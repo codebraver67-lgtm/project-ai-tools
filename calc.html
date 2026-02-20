@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="nav.css" rel="stylesheet">
+    <link href="calc.css" rel="stylesheet">
+    <style>
+        :root {
+            --background: #fdfcf9;
+            --foreground: #3a322c;
+            --primary: #d2b48c;
+            --secondary: #f5f5dc;
+            --accent: #8b4513;
+            --card: #ede7d9;
+            --border: #d3d3d3;
+        }
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--background);
+            color: var(--foreground);
+        }
+        h1, h2 {
+            font-family: 'Crimson Text', serif;
+        }
+        .bg-card { background-color: var(--card); }
+        .bg-primary { background-color: var(--primary); }
+        .bg-secondary { background-color: var(--secondary); }
+        .text-primary { color: var(--primary); }
+        .border-accent { border-color: var(--accent); }
+    </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-icon">🧮</div>
+  <span class="loader-name">Study Dudy</span>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- ═══════════════════════════════════
+     NAVBAR
+═══════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <div class="logo-icon">📖</div>
+      <span class="logo-name">Study Dudy</span>
+    </a>
+
+    <div class="spacer"></div>
+
+    <!-- Home (desktop) -->
+    <a href="index.html" class="nav-home">🏠 Home</a>
+
+    <!-- Date (desktop) -->
+    <div class="nav-date" id="navDate"></div>
+
+    <!-- Theme Switcher (desktop) -->
+    <div class="theme-switcher">
+      <button class="theme-btn" id="themeBtn" title="Switch theme">🎨</button>
+      <div class="theme-dropdown" id="themeDropdown">
+        <div class="theme-option" data-theme="default">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#f5cdb8,#ad5b2e)"></div> Brown
+        </div>
+        <div class="theme-option" data-theme="pink">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#f48fb1,#fce4ec)"></div> Pink
+        </div>
+        <div class="theme-option" data-theme="blue">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#90caf9,#b3e5fc)"></div> Blue
+        </div>
+        <div class="theme-option" data-theme="black">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#a78bfa,#312e81)"></div> Blac
+        </div>
+      </div>
+    </div>
+
+    <!-- Sections Dropdown (desktop) -->
+    <div class="nav-dropdown">
+      <button class="dropdown-toggle" id="sectionsBtn">
+        Sections <span class="arrow">▼</span>
+      </button>
+      <div class="section-dropdown" id="sectionsDropdown">
+        <button class="sec-btn" onclick="location.href='calc.html'">🧮 Mark Calculator</button>
+        <button class="sec-btn" onclick="location.href='stopwatch.html'">⏱️ Stopwatch</button>
+        <button class="sec-btn" onclick="location.href='todo.html'">✅ To-Do</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">📅 Calendar</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">🍅 Timer</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">📝 Notes</button>
+      </div>
+    </div>
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-date" id="mobileDateDisplay"></div>
+    <button class="mobile-home">🏠 Home</button>
+    <button class="mobile-sec-btn"><span>⏱️</span> Stopwatch</button>
+    <button class="mobile-sec-btn"><span>✅</span> To-Do</button>
+    <button class="mobile-sec-btn"><span>📅</span> Calendar</button>
+    <button class="mobile-sec-btn"><span>🍅</span> Timer</button>
+    <button class="mobile-sec-btn"><span>📝</span> Notes</button>
+    <div class="mobile-themes">
+      <button class="mobile-theme-opt" data-theme="default">🌸 Pastel</button>
+      <button class="mobile-theme-opt" data-theme="pink">💗 Pink</button>
+      <button class="mobile-theme-opt" data-theme="blue">💙 Blue</button>
+      <button class="mobile-theme-opt" data-theme="black">🖤 Black</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <h1>🧮 Marks Calculator</h1>
+  <p>Enter your scores and calculate your total & average instantly</p>
+  <div class="hero-badge">📌 Choose your stream below</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- ── LS Card ── -->
+  <div class="stream-card" id="card-ls">
+    <div class="stream-header" onclick="toggleCard('ls')">
+      <div class="stream-badge">📗</div>
+      <div class="stream-info">
+        <div class="stream-name">ES – Economics and Sociology</div>
+        <div class="stream-sub">Total max: 530 pts · Divisor: 26.5</div>
+      </div>
+      <span class="stream-tag">12 Subjects</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="stream-body">
+      <div class="divider"></div>
+      <div class="subjects-grid" id="inputs-ls"></div>
+      <button class="calc-btn" onclick="calculate('ls')">⚡ Calculate My Grade</button>
+      <div class="result-card" id="result-ls"></div>
+    </div>
+  </div>
+
+  <!-- ── GS Card ── -->
+  <div class="stream-card" id="card-gs">
+    <div class="stream-header" onclick="toggleCard('gs')">
+      <div class="stream-badge">🔬</div>
+      <div class="stream-info">
+        <div class="stream-name">GS – General Science</div>
+        <div class="stream-sub">Total max: 570 pts · Divisor: 28.5</div>
+      </div>
+      <span class="stream-tag">9 Subjects</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="stream-body">
+      <div class="divider"></div>
+      <div class="subjects-grid" id="inputs-gs"></div>
+      <button class="calc-btn" onclick="calculate('gs')">⚡ Calculate My Grade</button>
+      <div class="result-card" id="result-gs"></div>
+    </div>
+  </div>
+
+  <!-- ── SE Card ── -->
+  <div class="stream-card" id="card-se">
+    <div class="stream-header" onclick="toggleCard('se')">
+      <div class="stream-badge">🧬</div>
+      <div class="stream-info">
+        <div class="stream-name">LS –Life Sciences</div>
+        <div class="stream-sub">Total max: 560 pts · Divisor: 28</div>
+      </div>
+      <span class="stream-tag">10 Subjects</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="stream-body">
+      <div class="divider"></div>
+      <div class="subjects-grid" id="inputs-se"></div>
+      <button class="calc-btn" onclick="calculate('se')">⚡ Calculate My Grade</button>
+      <div class="result-card" id="result-se"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  window.addEventListener("load", function () {
+    document.getElementById("preloader").style.display = "none";
+  });
+</script>
+<script src="calc.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>

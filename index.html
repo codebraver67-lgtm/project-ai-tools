@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Dudy – Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet"/>
+  <link href="nav.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-icon">📚</div>
+  <span class="loader-text">Study Dudy</span>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">📖</div>
+      <span class="logo-name">Study Dudy</span>
+    </a>
+    <div class="spacer"></div>
+    <a href="index.html" class="nav-home">🏠 Home</a>
+    <div class="nav-date" id="navDate"></div>
+    <div class="theme-switcher">
+      <button class="theme-btn" id="themeBtn" title="Switch theme">🎨</button>
+      <div class="theme-dropdown" id="themeDropdown">
+        <div class="theme-option" data-theme="default">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#c9b8f5,#f5c6e0)"></div> Pastel
+        </div>
+        <div class="theme-option" data-theme="pink">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#f48fb1,#fce4ec)"></div> Pink
+        </div>
+        <div class="theme-option" data-theme="blue">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#90caf9,#b3e5fc)"></div> Blue
+        </div>
+        <div class="theme-option" data-theme="black">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#a78bfa,#312e81)"></div> Dark
+        </div>
+      </div>
+    </div>
+    <div class="nav-dropdown">
+      <button class="dropdown-toggle" id="sectionsBtn">
+        Sections <span class="arrow">▼</span>
+      </button>
+      <div class="section-dropdown" id="sectionsDropdown">
+        <button class="sec-btn" onclick="location.href='calc.html'">🧮 Mark Calculator</button>
+        <button class="sec-btn" onclick="location.href='stopwatch.html'">⏱️ Stopwatch</button>
+        <button class="sec-btn" onclick="location.href='todo.html'">✅ To-Do</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">📅 Calendar</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">🍅 Timer</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">📝 Notes</button>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-date" id="mobileDateDisplay"></div>
+    <button class="mobile-home" onclick="location.href='index.html'">🏠 Home</button>
+    <button class="mobile-sec-btn" onclick="location.href='calc.html'"><span>🧮</span> Mark Calculator</button>
+    <button class="mobile-sec-btn" onclick="location.href='stopwatch.html'"><span>⏱️</span> Stopwatch</button>
+    <button class="mobile-sec-btn" onclick="location.href='todo.html'"><span>✅</span> To-Do</button>
+    <button class="mobile-sec-btn" onclick="location.href='calendar.html'"><span>📅</span> Calendar</button>
+    <button class="mobile-sec-btn" onclick="location.href='timer.html'"><span>🍅</span> Timer</button>
+    <button class="mobile-sec-btn" onclick="location.href='notes.html'"><span>📝</span> Notes</button>
+    <div class="mobile-themes">
+      <button class="mobile-theme-opt" data-theme="default">🌸 Pastel</button>
+      <button class="mobile-theme-opt" data-theme="pink">💗 Pink</button>
+      <button class="mobile-theme-opt" data-theme="blue">💙 Blue</button>
+      <button class="mobile-theme-opt" data-theme="black">🖤 Black</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Let's Study! 🎓</h1>
+  <p>Everything you need to stay focused, organised, and on top of your grades — all in one place.</p>
+</div>
+
+<!-- CARDS -->
+<div class="cards-section">
+  <div class="section-title">✨ Your Study Tools</div>
+  <div class="cards-grid">
+
+    <!-- Marks Calculator -->
+    <div class="card">
+      <div class="card-icon">🧮</div>
+      <span class="card-label">Grades</span>
+      <div class="card-title">Marks Calculator</div>
+      <div class="card-desc">Calculate your total score and average out of 20 for LS, GS, and SE streams instantly.</div>
+      <a href="calc.html" class="card-btn">Open Calculator →</a>
+    </div>
+
+    <!-- Stopwatch -->
+    <div class="card">
+      <div class="card-icon">⏱️</div>
+      <span class="card-label">Time</span>
+      <div class="card-title">Stopwatch</div>
+      <div class="card-desc">Track how long you spend on each subject or task. Stay aware and beat your own records.</div>
+      <a href="stopwatch.html" class="card-btn">Open Stopwatch →</a>
+    </div>
+
+    <!-- To-Do -->
+    <div class="card">
+      <div class="card-icon">✅</div>
+      <span class="card-label">Tasks</span>
+      <div class="card-title">To-Do List</div>
+      <div class="card-desc">Add, check off, and manage your study tasks. Never forget an assignment again.</div>
+      <a href="todo.html" class="card-btn">Open To-Do →</a>
+    </div>
+
+    <!-- Calendar -->
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <span class="card-label">Schedule</span>
+      <div class="card-title">Calendar</div>
+      <div class="card-desc">Plan your study sessions, exams, and deadlines on a visual calendar. Stay ahead of time.</div>
+      <a href="calendar.html" class="card-btn">Open Calendar →</a>
+    </div>
+
+    <!-- Timer -->
+    <div class="card">
+      <div class="card-icon">🍅</div>
+      <span class="card-label">Focus</span>
+      <div class="card-title">Pomodoro Timer</div>
+      <div class="card-desc">Use the Pomodoro technique to study in focused bursts with short breaks in between.</div>
+      <a href="timer.html" class="card-btn">Open Timer →</a>
+    </div>
+
+    <!-- Notes -->
+    <div class="card">
+      <div class="card-icon">📝</div>
+      <span class="card-label">Notes</span>
+      <div class="card-title">Quick Notes</div>
+      <div class="card-desc">Jot down ideas, summaries, and reminders without leaving your study dashboard.</div>
+      <a href="notes.html" class="card-btn">Open Notes →</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="nav.js"></script>
+
+</body>
+</html>

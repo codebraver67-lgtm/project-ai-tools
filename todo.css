@@ -1,0 +1,55 @@
+/* Update todo.css to use the theme variables from nav.css */
+:root {
+    /* These link to the colors defined in nav.css */
+    --background: var(--bg);
+    --foreground: var(--text);
+    --primary: var(--accent1);
+    --secondary: var(--accent3);
+    --accent: var(--accent2);
+    --card: var(--nav-bg);
+    --border: var(--accent3);
+}
+
+body {
+    font-family: 'Lora', serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 0.4s, color 0.4s;
+}
+
+h1 {
+    font-family: 'Crimson Text', serif;
+    color: var(--primary);
+}
+
+.bg-card { 
+    background-color: var(--card); 
+    border: 1px solid var(--accent3);
+    transition: background-color 0.4s;
+}
+
+.bg-primary { 
+    background-color: var(--primary); 
+    transition: background-color 0.4s;
+}
+
+.text-primary { color: var(--primary); }
+.line-through { text-decoration: line-through; opacity: 0.6; }
+
+/* Input styling to match the theme */
+input[type="text"] {
+    width: 100%;
+    background: var(--background);
+    color: var(--foreground);
+    border-color: var(--accent3);
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary);
+}
+
+/* Stats text colors */
+#todo-stats {
+    color: var(--text-mute);
+    border-top-color: var(--accent3);
+}

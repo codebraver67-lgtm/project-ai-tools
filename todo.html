@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="nav.css" rel="stylesheet">
+  <link rel="stylesheet" href="todo.css">
+</head>
+<body class="p-4 md:p-8">
+
+    <div id="preloader">
+  <div class="loader-icon">📚</div>
+  <span class="loader-text">Study Dudy</span>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+<!-- ═══════════════════════════════════
+     NAVBAR
+═══════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <div class="logo-icon">📖</div>
+      <span class="logo-name">Study Dudy</span>
+    </a>
+
+    <div class="spacer"></div>
+
+    <!-- Home (desktop) -->
+    <a href="index.html" class="nav-home">🏠 Home</a>
+
+    <!-- Date (desktop) -->
+    <div class="nav-date" id="navDate"></div>
+
+    <!-- Theme Switcher (desktop) -->
+    <div class="theme-switcher">
+      <button class="theme-btn" id="themeBtn" title="Switch theme">🎨</button>
+      <div class="theme-dropdown" id="themeDropdown">
+        <div class="theme-option" data-theme="default">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#c9b8f5,#f5c6e0)"></div> Pastel
+        </div>
+        <div class="theme-option" data-theme="pink">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#f48fb1,#fce4ec)"></div> Pink
+        </div>
+        <div class="theme-option" data-theme="blue">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#90caf9,#b3e5fc)"></div> Blue
+        </div>
+        <div class="theme-option" data-theme="black">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#a78bfa,#312e81)"></div> Dark
+        </div>
+      </div>
+    </div>
+
+    <!-- Sections Dropdown (desktop) -->
+    <div class="nav-dropdown">
+      <button class="dropdown-toggle" id="sectionsBtn">
+        Sections <span class="arrow">▼</span>
+      </button>
+      <div class="section-dropdown" id="sectionsDropdown">
+        <button class="sec-btn" onclick="location.href='calc.html'">🧮 Mark Calculator</button>
+        <button class="sec-btn" onclick="location.href='stopwatch.html'">⏱️ Stopwatch</button>
+        <button class="sec-btn" onclick="location.href='todo.html'">✅ To-Do</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">📅 Calendar</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">🍅 Timer</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">📝 Notes</button>
+      </div>
+    </div>
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-date" id="mobileDateDisplay"></div>
+    <button class="mobile-home">🏠 Home</button>
+    <button class="mobile-sec-btn"><span>⏱️</span> Stopwatch</button>
+    <button class="mobile-sec-btn"><span>✅</span> To-Do</button>
+    <button class="mobile-sec-btn"><span>📅</span> Calendar</button>
+    <button class="mobile-sec-btn"><span>🍅</span> Timer</button>
+    <button class="mobile-sec-btn"><span>📝</span> Notes</button>
+    <div class="mobile-themes">
+      <button class="mobile-theme-opt" data-theme="default">🌸 Pastel</button>
+      <button class="mobile-theme-opt" data-theme="pink">💗 Pink</button>
+      <button class="mobile-theme-opt" data-theme="blue">💙 Blue</button>
+      <button class="mobile-theme-opt" data-theme="black">🖤 Black</button>
+    </div>
+  </div>
+</nav>
+<br><br><br>
+  <div id="app" class="max-w-xl mx-auto space-y-8">
+      <div class="text-center">
+          <h1 class="text-5xl font-bold mb-2">Todo List</h1>
+          <p class="text-gray-600">Organize your tasks and stay on track</p>
+      </div>
+
+      <div class="bg-card rounded-xl p-6 shadow-md border border-gray-200">
+          <div class="flex gap-3 mb-6">
+              <input type="text" id="todo-input" 
+                     class="flex-1 p-3 border-2 border-gray-200 rounded-lg focus:border-primary outline-none transition-all"
+                     placeholder="Add a new task...">
+              <button id="add-btn"
+                      class="bg-primary text-white font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
+                  Add
+              </button>
+          </div>
+
+          <div id="todo-list" class="space-y-3">
+              <!-- Todos will be injected here -->
+          </div>
+
+          <div id="todo-stats" class="mt-6 pt-6 border-t border-gray-300 flex justify-between text-sm text-gray-500 hidden">
+              <span id="remaining-count">0 tasks remaining</span>
+              <span id="completed-count">0 completed</span>
+          </div>
+      </div>
+  </div>
+
+  <script src="todo.js"></script>
+  <script src="nav.js"></script>
+</body>
+</html>

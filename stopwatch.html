@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="nav.css" rel="stylesheet">
+  <link href="stopwatch.css" rel="stylesheet">
+  
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     PRELOADER
+═══════════════════════════════════ -->
+<div id="preloader">
+  <div class="loader-icon">📚</div>
+  <span class="loader-text">Study Dudy</span>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- ═══════════════════════════════════
+     NAVBAR
+═══════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <div class="logo-icon">📖</div>
+      <span class="logo-name">Study Dudy</span>
+    </a>
+
+    <div class="spacer"></div>
+
+    <!-- Home (desktop) -->
+    <a href="index.html" class="nav-home">🏠 Home</a>
+
+    <!-- Date (desktop) -->
+    <div class="nav-date" id="navDate"></div>
+
+    <!-- Theme Switcher (desktop) -->
+    <div class="theme-switcher">
+      <button class="theme-btn" id="themeBtn" title="Switch theme">🎨</button>
+      <div class="theme-dropdown" id="themeDropdown">
+        <div class="theme-option" data-theme="default">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#c9b8f5,#f5c6e0)"></div> Purple
+        </div>
+        <div class="theme-option" data-theme="pink">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#f48fb1,#fce4ec)"></div> Pink
+        </div>
+        <div class="theme-option" data-theme="blue">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#90caf9,#b3e5fc)"></div> Blue
+        </div>
+        <div class="theme-option" data-theme="black">
+          <div class="theme-swatch" style="background:linear-gradient(135deg,#a78bfa,#312e81)"></div> Dark
+        </div>
+      </div>
+    </div>
+
+    <!-- Sections Dropdown (desktop) -->
+    <div class="nav-dropdown">
+      <button class="dropdown-toggle" id="sectionsBtn">
+        Sections <span class="arrow">▼</span>
+      </button>
+      <div class="section-dropdown" id="sectionsDropdown">
+        <button class="sec-btn" onclick="location.href='calc.html'">🧮 Mark Calculator</button>
+        <button class="sec-btn" onclick="location.href='stopwatch.html'">⏱️ Stopwatch</button>
+        <button class="sec-btn" onclick="location.href='todo.html'">✅ To-Do</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">📅 Calendar</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">🍅 Timer</button>
+        <button class="sec-btn" onclick="location.href='soon.html'">📝 Notes</button>
+      </div>
+    </div>
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-date" id="mobileDateDisplay"></div>
+    <button class="mobile-home">🏠 Home</button>
+    <button class="mobile-sec-btn"><span>⏱️</span> Stopwatch</button>
+    <button class="mobile-sec-btn"><span>✅</span> To-Do</button>
+    <button class="mobile-sec-btn"><span>📅</span> Calendar</button>
+    <button class="mobile-sec-btn"><span>🍅</span> Timer</button>
+    <button class="mobile-sec-btn"><span>📝</span> Notes</button>
+    <div class="mobile-themes">
+      <button class="mobile-theme-opt" data-theme="default">🌸 Pastel</button>
+      <button class="mobile-theme-opt" data-theme="pink">💗 Pink</button>
+      <button class="mobile-theme-opt" data-theme="blue">💙 Blue</button>
+      <button class="mobile-theme-opt" data-theme="black">🖤 Black</button>
+    </div>
+  </div>
+</nav>
+
+
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    
+    <!-- Timer Display -->
+    <div class="timer-card">
+      <div class="time-display" id="display">00:00<span style="font-size:0.5em; vertical-align: text-top;">.00</span></div>
+      
+      <!-- UPDATED CONTROLS: Added separate Stop button -->
+      <div class="controls">
+        <button class="btn btn-start" id="startBtn" onclick="startTimer()">Start</button>
+        <button class="btn btn-stop" id="stopBtn" onclick="stopTimer()">Stop</button>
+        <button class="btn btn-lap" id="lapBtn" onclick="recordLap()">Lap</button>
+        <button class="btn btn-reset" id="resetBtn" onclick="resetTimer()">Reset</button>
+      </div>
+    </div>
+
+    <!-- Log / Notes Area -->
+    <div class="log-card">
+      <div class="log-header">
+        <span>Log & Notes</span>
+        <button class="clear-log" onclick="clearLogs()">Clear All</button>
+      </div>
+      <div class="log-list" id="logList">
+        <!-- Logs will appear here -->
+        <div style="color: var(--text-mute); text-align: center; padding: 20px; font-size: 0.9rem;">
+          No times recorded yet.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COMBINED SCRIPTS -->
+  <script>
+    /* ─────────────────────────────────────
+       STOPWATCH LOGIC
+    ───────────────────────────────────── */
+    let timerInterval;
+    let running = false;
+    let time = 0; // Time in centiseconds (1/100th of a second)
+    
+    const display = document.getElementById('display');
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const logList = document.getElementById('logList');
+    let logCount = 0;
+
+    // Format time (centiseconds -> HH:MM:SS)
+    function formatTime(t) {
+      const hours = Math.floor(t / 360000);
+      const minutes = Math.floor((t % 360000) / 6000);
+      const seconds = Math.floor((t % 6000) / 100);
+      const centiseconds = t % 100;
+
+      if (hours > 0) {
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}<span style="font-size:0.5em; vertical-align: text-top;">.${String(centiseconds).padStart(2, '0')}</span>`;
+    }
+
+    // UPDATE DISPLAY HELPER
+    function updateDisplay() {
+      display.innerHTML = formatTime(time);
+    }
+
+    // START FUNCTION
+    function startTimer() {
+      if (running) return; // Prevent double start
+      
+      running = true;
+      startBtn.style.opacity = "0.5"; // Visual feedback it's inactive
+      
+      timerInterval = setInterval(() => {
+        time += 1;
+        updateDisplay();
+      }, 10);
+    }
+
+    // STOP / PAUSE FUNCTION
+    function stopTimer() {
+      if (!running) return; // Prevent double stop
+      
+      clearInterval(timerInterval);
+      running = false;
+      startBtn.style.opacity = "1"; // Reactivate start button
+      startBtn.textContent = "Resume"; // Change text to indicate resume capability
+    }
+
+    // RESET FUNCTION (Auto-logs if running)
+    function resetTimer() {
+      // If timer was running, stop it first
+      if (running) {
+        clearInterval(timerInterval);
+        running = false;
+      }
+
+      // If time was > 0, log it
+      if(time > 0) {
+        addLogItem(formatTime(time), "Session Reset");
+      }
+
+      time = 0;
+      updateDisplay();
+      startBtn.style.opacity = "1";
+      startBtn.textContent = "Start";
+    }
+
+    // Manual Lap Record
+    function recordLap() {
+      if(time === 0) return;
+      addLogItem(formatTime(time), "Lap");
+    }
+
+    // Add item to DOM
+    function addLogItem(timeStr, defaultNote) {
+      logCount++;
+      // Clear "No times recorded" message if present
+      if (logCount === 1) {
+        logList.innerHTML = "";
+      }
+
+      const item = document.createElement('div');
+      item.className = 'log-item';
+      
+      // Determine border color based on theme
+      const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent1');
+      item.style.borderColor = accent;
+
+      item.innerHTML = `
+        <div class="log-time">${timeStr}</div>
+        <input type="text" class="log-note" placeholder="Write note..." value="">
+      `;
+      
+      // Prepend to list
+      logList.prepend(item);
+    }
+
+    // Clear all logs
+    function clearLogs() {
+      logList.innerHTML = `<div style="color: var(--text-mute); text-align: center; padding: 20px; font-size: 0.9rem;">No times recorded yet.</div>`;
+      logCount = 0;
+    }
+  </script>
+
+  <script src="nav.js"></script>
+  <script src="stopwatch.js"></script>
+</body>
+</html>
